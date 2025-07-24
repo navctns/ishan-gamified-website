@@ -1,0 +1,94 @@
+@font-face {
+    font-family: 'bubblegum-sans';
+    src: url('./fonts/Bubblegum_Sans/BubblegumSans-Regular.ttf');
+}
+h1,h2,h3,h4,h5,h6 {
+    font-family: 'bubblegum-sans', sans-serif;
+}
+body {
+    font-family: 'bubblegum-sans', sans-serif;
+}
+/* Custom styles that extend Tailwind */
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+.bounce-animation {
+    animation: bounce 1s infinite;
+}
+
+/* Game card hover effect */
+.game-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* Achievement glow */
+.achievement[data-achieved="true"] {
+    animation: glow 2s infinite alternate;
+    opacity: 1 !important;
+}
+
+@keyframes glow {
+    from {
+        box-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
+    }
+    to {
+        box-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
+    }
+}
+
+/* XP bar animation */
+#xp-bar {
+    transition: width 0.5s ease;
+}
+
+/* Avatar pulse effect */
+#avatar-display {
+    transition: all 0.3s ease;
+}
+
+#avatar-display:hover {
+    transform: scale(1.05);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+/* Confetti effect */
+.confetti {
+    position: fixed;
+    width: 10px;
+    height: 10px;
+    background-color: #f00;
+    opacity: 0;
+    z-index: 1000;
+    animation: confetti-fall 5s linear forwards;
+}
+
+@keyframes confetti-fall {
+    0% {
+        transform: translateY(-100vh) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+    }
+}

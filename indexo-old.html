@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My KidSpace - Gamified Profile</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .draggable {
+      cursor: grab;
+    }
+    .droppable {
+      border: 2px dashed #ccc;
+      padding: 20px;
+      min-height: 60px;
+    }
+  </style>
+</head>
+<body class="bg-gradient-to-r from-yellow-100 via-pink-100 to-purple-200 min-h-screen p-6">
+
+  <!-- Header -->
+  <header class="text-center mb-6">
+    <h1 class="text-4xl font-bold text-pink-700">🌟 Welcome to My KidSpace! 🌟</h1>
+    <p class="text-xl text-gray-700">Let's learn and have fun, little star!</p>
+  </header>
+
+  <!-- Profile Card -->
+  <div class="bg-white rounded-2xl shadow-xl p-4 max-w-lg mx-auto mb-8 text-center">
+    <img src="./assets/images/avatar/9440461.jpg" alt="Avatar" class="w-20 border-rounded h-20 mx-auto mb-2">
+    <h2 class="text-xl font-bold">Name: <span id="kid-name">Shanu</span></h2>
+    <p>Grade: 2</p>
+    <p>Stars Collected: ⭐ <span id="stars">0</span></p>
+  </div>
+
+  <!-- Game Section -->
+  <section class="bg-white rounded-2xl shadow-md p-6 max-w-lg mx-auto">
+    <h3 class="font-bold">Mario Invaders</h3>
+<iframe src="https://scratch.mit.edu/projects/284081932/embed" allowtransparency="true" width="485" height="402" frameborder="0" scrolling="no" allowfullscreen></iframe>
+
+    <!-- Feedback -->
+    <p id="feedback" class="text-center mt-6 font-bold text-xl text-green-600"></p>
+    <iframe src="https://scratch.mit.edu/projects/12345678/embed" allowtransparency="true" width="485" height="402" frameborder="0" scrolling="no" allowfullscreen></iframe>
+    <iframe src="https://scratch.mit.edu/projects/1191898953/embed" allowtransparency="true" width="485" height="402" frameborder="0" scrolling="no" allowfullscreen></iframe>
+    <iframe src="https://scratch.mit.edu/projects/1195234644/embed" allowtransparency="true" width="485" height="402" frameborder="0" scrolling="no" allowfullscreen></iframe>
+    <h3>Minecraft Classic</h3>
+    <!-- <iframe src="https://classic.minecraft.net/" width="960" height="600"></iframe> -->
+    <iframe src="https://classic.minecraft.net/" width="1280" height="960"></iframe>
+
+  </section>
+
+  <script>
+    let stars = 0;
+
+    const draggables = document.querySelectorAll(".draggable");
+    const droppables = document.querySelectorAll(".droppable");
+    const feedback = document.getElementById("feedback");
+
+    draggables.forEach(item => {
+      item.addEventListener("dragstart", (e) => {
+        e.dataTransfer.setData("text/plain", e.target.id);
+      });
+    });
+
+    droppables.forEach(area => {
+      area.addEventListener("dragover", (e) => {
+        e.preventDefault();
+      });
+
+      area.addEventListener("drop", (e) => {
+        e.preventDefault();
+        const draggedId = e.dataTransfer.getData("text");
+        const correct = area.dataset.match;
+
+        if (draggedId === correct) {
+          area.innerHTML = "✅ Correct!";
+          stars++;
+          document.getElementById("stars").textContent = stars;
+          feedback.textContent = "Great Job! 🎉";
+        } else {
+          feedback.textContent = "Oops! Try again.";
+        }
+      });
+    });
+  </script>
+</body>
+</html>
